@@ -8,7 +8,7 @@ use Illuminate\Notifications\Notification;
 
 class BulkSMSNigeriaChannel
 {
-    protected $baseUri = "https://www.bulksmsnigeria.com/api/v1/";
+    protected $baseUri = "https://www.bulksmsnigeria.com/api/v1";
 
     protected $headers = array(
         "Content-Type" => "application/json",
@@ -51,11 +51,12 @@ class BulkSMSNigeriaChannel
 
     protected function sendSMS($to, $message)
     {
-        $params = [
-            "to" => ""
-        ];
+        $from = $this->from($message);
 
-        $response = $this->client->get();
+        $query = "?api_token={$this->config["api_token"]}&
+                    from={$from}&to={$to}&body={$message->body}";
+
+        return $response = $this->client->get($query);
     }
 
     protected function getTo($notifiable, Notification $notification)
@@ -76,5 +77,10 @@ class BulkSMSNigeriaChannel
         }
 
         throw new BulkSMSNigeriaException("Invalid message format.");
+    }
+
+    protected function from($message)
+    {
+        return $message->from ? $message->from : $this->config["from"];
     }
 }

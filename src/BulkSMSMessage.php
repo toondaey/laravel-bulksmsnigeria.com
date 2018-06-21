@@ -8,16 +8,16 @@ class BulkSMSMessage
 {
     protected $from;
 
-    protected $message;
+    protected $body;
 
-    public function __construct($message = "")
+    public function __construct($body = "")
     {
-        $this->messaege = $message;
+        $this->messaege = $body;
     }
 
-    public function message($message)
+    public function body($body)
     {
-        $this->message = $message;
+        $this->body = $body;
 
         return $this;
     }
