@@ -1,0 +1,80 @@
+<?php
+
+namespace Toonday\BulkSMSNigeria;
+
+use GuzzleHttp\Client;
+use Illuminate\Support\Facades\Config;
+use Illuminate\Notifications\Notification;
+
+class BulkSMSNigeriaChannel
+{
+    protected $baseUri = "https://www.bulksmsnigeria.com/api/v1/";
+
+    protected $headers = array(
+        "Content-Type" => "application/json",
+        "Accept"       => "application/json",
+    );
+
+    protected $client;
+
+    protected $username;
+
+    protected $password;
+
+    protected $to;
+
+    public function __construct()
+    {
+        $this->config = Config::get("bulksmsnigeria");
+
+        $this->client = new Client([
+            "base_uri" => $this->baseUri,
+            "headers"  => $this->headers,
+        ]);
+    }
+
+    /**
+     * Send the given notification.
+     *
+     * @param  mixed  $notifiable
+     * @param  Illuminate\Notifications\Notification  $notification
+     * @return void
+     */
+    public function send($notifiable, Notification $notification)
+    {
+        $to = $this->getTo($notifiable, $notification);
+
+        $message = $this->parseMessage( $notification->toBulkSMSNigeria($notifiable) );
+
+        $this->sendSMS($to, $message);
+    }
+
+    protected function sendSMS($to, $message)
+    {
+        $params = [
+            "to" => ""
+        ];
+
+        $response = $this->client->get();
+    }
+
+    protected function getTo($notifiable, Notification $notification)
+    {
+        if (! $to = $notifiable->routeNotificationFor('bulkSMSNigeria', $notification)) {
+            return;
+        }
+
+        return $to;
+    }
+
+    protected function parseMessage($message)
+    {
+        if (is_string($message)) {
+            return new BulkSMSMessage($message);
+        } else if ($message instanceof BulkSMSMessage) {
+            return $message;
+        }
+
+        throw new BulkSMSNigeriaException("Invalid message format.");
+    }
+}
