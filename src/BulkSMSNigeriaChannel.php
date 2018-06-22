@@ -8,17 +8,6 @@ use Illuminate\Notifications\Notification;
 
 class BulkSMSNigeriaChannel
 {
-    protected $baseUri = "https://www.bulksmsnigeria.com";
-
-    protected $headers = array(
-        "Content-Type" => "application/json",
-        "Accept"       => "application/json",
-    );
-
-    public $endpoints = [
-        "send" => "/api/v1/sms/create"
-    ];
-
     protected $client;
 
     protected $username;
@@ -27,13 +16,18 @@ class BulkSMSNigeriaChannel
 
     protected $to;
 
-    public function __construct()
+    public function __construct(array $config)
     {
-        $this->config = Config::get("bulksmsnigeria");
+        $this->config = $config;
 
+        $this->prepareClient();
+    }
+
+    protected function prepareClient()
+    {
         $this->client = new Client([
-            "base_uri" => $this->baseUri,
-            "headers"  => $this->headers,
+            "base_uri" => $this->config["baseuri"],
+            "headers"  => $this->headers["headers"],
         ]);
     }
 
@@ -50,7 +44,10 @@ class BulkSMSNigeriaChannel
 
         $message = $this->parseMessage( $notification->toBulkSMSNigeria($notifiable) );
 
-        $this->sendSMS($to, $message);
+        if (array_key_exists($message->type, $this->config["types"]))
+            return $this->send{strtoupper($message->type)}($to, $message);
+
+        throw new BulkSMSNigeriaException("Message type does not exist");
     }
 
     protected function sendSMS($to, $message)
@@ -59,7 +56,7 @@ class BulkSMSNigeriaChannel
 
         $query = "?api_token={$this->config["api_token"]}&from={$from}&to={$to}&body={$message->body}";
 
-        $response = $this->client->get($this->endpoints["send"].$query);
+        $response = $this->client->get($this->config["endpoints"]["send"][$message->type].$query);
     }
 
     protected function getTo($notifiable, Notification $notification)
