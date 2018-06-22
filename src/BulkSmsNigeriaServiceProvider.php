@@ -6,7 +6,7 @@ use Illuminate\Support\ServiceProvider;
 
 class BulkSmsNigeriaServiceProvider extends ServiceProvider
 {
-    protected $libConfigPath = __DIR__."/../../config";
+    protected $libConfigPath = __DIR__."/../config";
 
     public function boot()
     {
