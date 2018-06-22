@@ -16,7 +16,7 @@ class BulkSMSNigeriaChannel
     );
 
     public $endpoints = [
-        "send" => "/sms/create"
+        "send" => "sms/create"
     ];
 
     protected $client;
