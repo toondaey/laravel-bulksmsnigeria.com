@@ -15,14 +15,15 @@ class BulkSmsNigeriaServiceProvider extends ServiceProvider
         ], "config");
 
         $this->mergeConfigFrom("{$this->libConfigPath}/base_config.php", "bulksmsnigeria");
-
-        $this->app->singleton('bulksmsnigeria', function ($app) {
-            return new BulkSMSNigeriaChannel;
-        });
     }
 
     public function register()
     {
-        //
+        $this->app->bind(BulkSMSNigeriaChannel::class, BulkSMSNigeriaChannel::class);
+
+        $this->app->singleton('bulksmsnigeria', function ($app)
+        {
+            return new BulkSMSNigeriaChannel;
+        });
     }
 }
