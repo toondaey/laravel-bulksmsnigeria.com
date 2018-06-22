@@ -8,7 +8,7 @@ use Illuminate\Notifications\Notification;
 
 class BulkSMSNigeriaChannel
 {
-    protected $baseUri = "https://www.bulksmsnigeria.com/api/v1";
+    protected $baseUri = "https://www.bulksmsnigeria.com";
 
     protected $headers = array(
         "Content-Type" => "application/json",
@@ -16,7 +16,7 @@ class BulkSMSNigeriaChannel
     );
 
     public $endpoints = [
-        "send" => "sms/create"
+        "send" => "/api/v1/sms/create"
     ];
 
     protected $client;
