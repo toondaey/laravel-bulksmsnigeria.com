@@ -53,8 +53,7 @@ class BulkSMSNigeriaChannel
     {
         $from = $this->from($message);
 
-        $query = "?api_token={$this->config["api_token"]}&
-                    from={$from}&to={$to}&body={$message->body}";
+        $query = "?api_token={$this->config["api_token"]}&from={$from}&to={$to}&body={$message->body}";
 
         return $response = $this->client->get($query);
     }
