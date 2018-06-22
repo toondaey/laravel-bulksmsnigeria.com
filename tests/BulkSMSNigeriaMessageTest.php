@@ -26,6 +26,7 @@ class BulkSMSNigeriaMessageTest extends TestCase
 
     /**
      * Provides data for the above.
+     *
      * @return [type] [description]
      */
     function provideBulkSMSMessageData()
