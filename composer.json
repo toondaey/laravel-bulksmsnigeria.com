@@ -1,5 +1,5 @@
 {
-    "name": "toonday/bulksmsnigeria",
+    "name": "toonday/laravel-bulksmsnigeria-notification",
     "description": "A laravel channel for bulk nigeria sms provider.",
     "type": "library",
     "repositories": [

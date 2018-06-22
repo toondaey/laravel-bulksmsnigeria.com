@@ -10,6 +10,8 @@ class BulkSMSMessage
 
     public $body;
 
+    public $type = "sms";
+
     public function __construct($body = "")
     {
         $this->messaege = $body;
@@ -27,5 +29,10 @@ class BulkSMSMessage
         $this->from = $from;
 
         return $this;
+    }
+
+    public function type($type)
+    {
+        $this->type = $type;
     }
 }
