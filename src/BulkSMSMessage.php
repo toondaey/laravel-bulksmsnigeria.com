@@ -6,9 +6,9 @@ use Illuminate\Support\Facades\Config;
 
 class BulkSMSMessage
 {
-    protected $from;
+    public $from;
 
-    protected $body;
+    public $body;
 
     public function __construct($body = "")
     {

@@ -2,14 +2,21 @@
     "name": "toonday/bulknigeriasms",
     "description": "A laravel channel for bulk nigeria sms provider.",
     "type": "library",
+    "repositories": [
+        {
+             "type": "composer",
+             "url": "https://packagist.org"
+        },
+        { "packagist": false }
+    ],
     "require": {
         "illuminate/notifications": "~5.0",
         "guzzlehttp/guzzle": "5.*|6.*"
     },
     "require-dev": {
         "phpunit/phpunit": "^7.2",
-        "scrutinizer/ocular": "~1.1",
-        "satooshi/php-coveralls": "^0.7.0"
+        "scrutinizer/ocular": "dev-master",
+        "orchestra/testbench": "~3.0"
     },
     "license": "MIT",
     "authors": [
