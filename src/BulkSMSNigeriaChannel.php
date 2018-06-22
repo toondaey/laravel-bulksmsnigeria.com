@@ -45,7 +45,7 @@ class BulkSMSNigeriaChannel
         $message = $this->parseMessage( $notification->toBulkSMSNigeria($notifiable) );
 
         // if (array_key_exists($message->type, $this->config["types"])){
-            $this->send{strtoupper($message->type)}($to, $message);
+            $this->{"send".strtoupper($message->type)}($to, $message);
         // } else {
             throw new BulkSMSNigeriaException("Message type does not exist");
         // }
