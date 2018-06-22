@@ -15,6 +15,10 @@ class BulkSMSNigeriaChannel
         "Accept"       => "application/json",
     );
 
+    public $endpoints = [
+        "send" => "/sms/create"
+    ];
+
     protected $client;
 
     protected $username;
@@ -55,7 +59,7 @@ class BulkSMSNigeriaChannel
 
         $query = "?api_token={$this->config["api_token"]}&from={$from}&to={$to}&body={$message->body}";
 
-        return $response = $this->client->get($query);
+        return $response = $this->client->get($this->endpoints["send"].$query);
     }
 
     protected function getTo($notifiable, Notification $notification)
