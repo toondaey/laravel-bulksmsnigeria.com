@@ -46,7 +46,7 @@ class BulkSMSMessage
 
     public function __construct($body = "")
     {
-        $this->messaege = $body;
+        $this->body = $body;
     }
 
     /**
