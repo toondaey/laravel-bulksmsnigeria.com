@@ -16,7 +16,8 @@
     "require-dev": {
         "phpunit/phpunit": "^7.2",
         "scrutinizer/ocular": "dev-master",
-        "orchestra/testbench": "~3.0"
+        "orchestra/testbench": "~3.0",
+        "squizlabs/php_codesniffer": "*"
     },
     "license": "MIT",
     "authors": [
@@ -39,7 +40,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Toonday\\BulkSMSNigeria\\BulkSmsNigeriaServiceProvider"
+                "Toonday\\BulkSMSNigeria\\BulkSMSNigeriaServiceProvider"
             ]
         }
     }

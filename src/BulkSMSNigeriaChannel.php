@@ -1,5 +1,14 @@
 <?php
 
+/**
+ * @author 'Tunde <aromire.tunde@gmail.com>
+ *
+ * This file is part of the bulk sms nigeria laravel notification
+ * library.
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
 namespace Toonday\BulkSMSNigeria;
 
 use GuzzleHttp\Client;
@@ -7,14 +16,32 @@ use Illuminate\Support\Facades\Config;
 use Illuminate\Notifications\Notification;
 use Toonday\BulkSMSNigeria\Exception\BulkSMSNigeriaException;
 
+/**
+ * The notificaiton channel.
+ * @property GuzzleHttp\Client $client
+ * @property string $to
+ *
+ * @method void __constructor()
+ * @method void prepareClient()
+ * @method void send($notifiable, Illuminate\Notifications\Notification $notification)
+ * @method Psr7\Response sendSMS(string $to, Toonday\BulkSMSNigeria\BulkSMSMessage $message)
+ * @method void getTo($notifiable, Illuminate\Notifications\Notification $notification)
+ * @method Toonday\BulkSMSNigeria\BulkSMSMessage parseMessage(string|Toonday\BulkSMSNigeria\BulkSMSMessage $message)
+ * @method string from(Toonday\BulkSMSNigeria\BulkSMSMessage $message)
+ *
+ */
 class BulkSMSNigeriaChannel
 {
+    /**
+     * Place for GuzzleHttp\Client.
+     * @var GuzzleHttp\Client
+     */
     protected $client;
 
-    protected $username;
-
-    protected $password;
-
+    /**
+     * Place holder for the receiver(s);
+     * @var string
+     */
     protected $to;
 
     public function __construct()
@@ -24,6 +51,10 @@ class BulkSMSNigeriaChannel
         $this->prepareClient();
     }
 
+    /**
+     * Prepare GuzzleHttp\Client with base parameters.
+     * @return void
+     */
     protected function prepareClient()
     {
         $this->client = new Client([
@@ -52,15 +83,29 @@ class BulkSMSNigeriaChannel
         }
     }
 
+    /**
+     * Send SMS message.
+     *
+     * @param  string $to
+     * @param  Toonday\BulkSMSNigeria\BulkSMSMessage $message
+     * @return Psr7\Response
+     */
     protected function sendSMS($to, $message)
     {
         $from = $this->from($message);
 
         $query = "?api_token={$this->config["api_token"]}&from={$from}&to={$to}&body={$message->body}";
 
-        $response = $this->client->get($this->config["endpoints"]["send"][$message->type].$query);
+        return $response = $this->client->get($this->config["endpoints"]["send"][$message->type].$query);
     }
 
+    /**
+     * Fetch the receiver(s) of the message.
+     *
+     * @param  mixed       $notifiable
+     * @param  Illuminate\Notifications\Notification $notification
+     * @return string
+     */
     protected function getTo($notifiable, Notification $notification)
     {
         if (! $to = $notifiable->routeNotificationFor('bulkSMSNigeria', $notification)) {
@@ -70,6 +115,12 @@ class BulkSMSNigeriaChannel
         return $to;
     }
 
+    /**
+     * Parse message.
+     *
+     * @param  string|Toonday\BulkSMSNigeria\BulkSMSMessage $message
+     * @return Toonday\BulkSMSNigeria\BulkSMSMessage
+     */
     protected function parseMessage($message)
     {
         if (is_string($message)) {
@@ -81,6 +132,12 @@ class BulkSMSNigeriaChannel
         throw new BulkSMSNigeriaException("Invalid message format.");
     }
 
+    /**
+     * Get the sender.
+     *
+     * @param  Toonday\BulkSMSNigeria\BulkSMSMessage $message
+     * @return string
+     */
     protected function from($message)
     {
         return $message->from ? $message->from : $this->config["from"];
