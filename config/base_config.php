@@ -1,7 +1,7 @@
 <?php
 
 return [
-    "baseUri" => "https://www.bulksmsnigeria.com",
+    "base_uri" => "https://www.bulksmsnigeria.com",
     "headers" => [
         "Content-Type" => "application/json",
         "Accept"       => "application/json",

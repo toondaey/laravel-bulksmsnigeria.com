@@ -26,8 +26,8 @@ class BulkSMSNigeriaChannel
     protected function prepareClient()
     {
         $this->client = new Client([
-            "base_uri" => $this->config["baseUri"],
-            "headers"  => $this->headers["headers"],
+            "base_uri" => $this->config["base_uri"],
+            "headers"  => $this->config["headers"],
         ]);
     }
 
