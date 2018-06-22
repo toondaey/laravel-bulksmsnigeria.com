@@ -16,9 +16,9 @@ class BulkSMSNigeriaChannel
 
     protected $to;
 
-    public function __construct(array $config)
+    public function __construct()
     {
-        $this->config = $config;
+        $this->config = Config::get("bulksmsnigeria");
 
         $this->prepareClient();
     }
