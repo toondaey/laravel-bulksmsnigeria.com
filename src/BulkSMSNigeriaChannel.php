@@ -5,6 +5,7 @@ namespace Toonday\BulkSMSNigeria;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Notifications\Notification;
+use Toonday\BulkSMSNigeria\Exception\BulkSMSNigeriaException;
 
 class BulkSMSNigeriaChannel
 {
@@ -47,7 +48,7 @@ class BulkSMSNigeriaChannel
         // if (array_key_exists($message->type, $this->config["types"])){
             $this->{"send".strtoupper($message->type)}($to, $message);
         // } else {
-            throw new BulkSMSNigeriaException("Message type does not exist");
+            // throw new BulkSMSNigeriaException("Message type does not exist");
         // }
     }
 
