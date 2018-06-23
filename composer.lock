@@ -470,12 +470,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "02591e21d6307d9ff34d406cf1857df13c15586c"
+                "reference": "35c68c20922936bf1f1ae07473b1f6730a04f72c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/02591e21d6307d9ff34d406cf1857df13c15586c",
-                "reference": "02591e21d6307d9ff34d406cf1857df13c15586c",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/35c68c20922936bf1f1ae07473b1f6730a04f72c",
+                "reference": "35c68c20922936bf1f1ae07473b1f6730a04f72c",
                 "shasum": ""
             },
             "require": {
@@ -601,7 +601,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2018-06-20T14:27:45+00:00"
+            "time": "2018-06-22T15:25:08+00:00"
         },
         {
             "name": "league/flysystem",
@@ -1969,12 +1969,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/translation.git",
-                "reference": "4f0dea904fae71f4566eedee1d0bb15dc5b41fa4"
+                "reference": "54077c32ba2dd9c7ff4dce005b2b570425d90f60"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/translation/zipball/4f0dea904fae71f4566eedee1d0bb15dc5b41fa4",
-                "reference": "4f0dea904fae71f4566eedee1d0bb15dc5b41fa4",
+                "url": "https://api.github.com/repos/symfony/translation/zipball/54077c32ba2dd9c7ff4dce005b2b570425d90f60",
+                "reference": "54077c32ba2dd9c7ff4dce005b2b570425d90f60",
                 "shasum": ""
             },
             "require": {
@@ -2030,7 +2030,7 @@
             ],
             "description": "Symfony Translation Component",
             "homepage": "https://symfony.com",
-            "time": "2018-06-20T17:36:22+00:00"
+            "time": "2018-06-22T08:59:57+00:00"
         },
         {
             "name": "symfony/var-dumper",
@@ -2719,16 +2719,16 @@
         },
         {
             "name": "phar-io/manifest",
-            "version": "dev-master",
+            "version": "1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phar-io/manifest.git",
-                "reference": "014feadb268809af7c8e2f7ccd396b8494901f58"
+                "reference": "2df402786ab5368a0169091f61a7c1e0eb6852d0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phar-io/manifest/zipball/014feadb268809af7c8e2f7ccd396b8494901f58",
-                "reference": "014feadb268809af7c8e2f7ccd396b8494901f58",
+                "url": "https://api.github.com/repos/phar-io/manifest/zipball/2df402786ab5368a0169091f61a7c1e0eb6852d0",
+                "reference": "2df402786ab5368a0169091f61a7c1e0eb6852d0",
                 "shasum": ""
             },
             "require": {
@@ -2770,7 +2770,7 @@
                 }
             ],
             "description": "Component for reading phar.io manifest information from a PHP Archive (PHAR)",
-            "time": "2017-04-07T07:07:10+00:00"
+            "time": "2017-03-05T18:14:27+00:00"
         },
         {
             "name": "phar-io/version",
@@ -3470,12 +3470,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "f951f7b023fb466d226fefa319f142981465267d"
+                "reference": "1bde207ef8e7afc92e9d38f7f3f411d4369b1b3f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/f951f7b023fb466d226fefa319f142981465267d",
-                "reference": "f951f7b023fb466d226fefa319f142981465267d",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/1bde207ef8e7afc92e9d38f7f3f411d4369b1b3f",
+                "reference": "1bde207ef8e7afc92e9d38f7f3f411d4369b1b3f",
                 "shasum": ""
             },
             "require": {
@@ -3546,7 +3546,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2018-06-21T13:14:15+00:00"
+            "time": "2018-06-22T13:40:39+00:00"
         },
         {
             "name": "scrutinizer/ocular",

@@ -22,6 +22,8 @@
     <php>
         <env name="BULKSMSNIGERIA_FROM" value="Test"/>
         <env name="BULKSMSNIGERIA_TOKEN" value="1234567890abcdefghijklmnopqrstuvwxyz"/>
+        <env name="FAKER_LOCALE" value="en_NG"/>
+        <env name="FACTORY_PATH" value="tests/stubs/factory"/>
     </php>
     <logging>
         <log type="tap" target="build/report.tap"/>

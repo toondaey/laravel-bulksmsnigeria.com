@@ -14,7 +14,7 @@ namespace Toonday\BulkSMSNigeria;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Notifications\Notification;
-use Toonday\BulkSMSNigeria\Exception\BulkSMSNigeriaException;
+use Toonday\BulkSMSNigeria\Exceptions\BulkSMSNigeriaException;
 
 /**
  * The notificaiton channel.
@@ -34,7 +34,7 @@ use Toonday\BulkSMSNigeria\Exception\BulkSMSNigeriaException;
 class BulkSMSNigeriaChannel
 {
     /**
-     * Place for GuzzleHttp\Client.
+     * Placeholder for GuzzleHttp\Client.
      * @var GuzzleHttp\Client
      */
     protected $client;
@@ -113,10 +113,10 @@ class BulkSMSNigeriaChannel
      * @param  Illuminate\Notifications\Notification $notification
      * @return string
      */
-    protected function getTo($notifiable, Notification $notification)
+    protected function getTo($notifiable, Notification $notification = null)
     {
         if (! $to = $notifiable->routeNotificationFor('bulkSMSNigeria', $notification)) {
-            return;
+            throw new BulkSMSNigeriaException("Notifiable instance does not have a valid phone number(s)");
         }
 
         return $to;
