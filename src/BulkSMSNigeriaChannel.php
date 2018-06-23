@@ -20,6 +20,7 @@ use Toonday\BulkSMSNigeria\Exception\BulkSMSNigeriaException;
  * The notificaiton channel.
  * @property GuzzleHttp\Client $client
  * @property string $to
+ * @property array $config
  *
  * @method void __constructor()
  * @method void prepareClient()
@@ -39,14 +40,20 @@ class BulkSMSNigeriaChannel
     protected $client;
 
     /**
-     * Place holder for the receiver(s);
+     * Placeholder for the receiver(s);
      * @var string
      */
     protected $to;
 
-    public function __construct()
+    /**
+     * Placeholder for the configurations
+     * @var array
+     */
+    protected $config;
+
+    public function __construct($config)
     {
-        $this->config = Config::get("bulksmsnigeria");
+        $this->config = $config;
 
         $this->prepareClient();
     }

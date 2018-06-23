@@ -6,6 +6,8 @@ use Orchestra\Testbench\TestCase as BaseTestCase;
 
 class TestCase extends BaseTestCase
 {
+    protected $configKey;
+
     protected function setUp()
     {
         if (! $this->app) {
@@ -25,11 +27,6 @@ class TestCase extends BaseTestCase
             require __DIR__."/../config/base_config.php"
         );
 
-        $app['config']->set('database.default', 'testbench');
-        $app['config']->set('database.connections.testbench', [
-            'driver'   => 'sqlite',
-            'database' => ':memory:',
-            'prefix'   => '',
-        ]);
+        $app["config"]->set("bulksmsnigeria", $config);
     }
 }

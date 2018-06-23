@@ -12,6 +12,7 @@
 namespace Toonday\BulkSMSNigeria;
 
 use Illuminate\Support\ServiceProvider;
+use Toonday\BulkSMSNigeria\BulkSMSNigeriaChannel;
 
 /**
  * Service provider.
@@ -35,6 +36,10 @@ class BulkSMSNigeriaServiceProvider extends ServiceProvider
         ], "config");
 
         $this->mergeConfigFrom("{$this->libConfigPath}/base_config.php", "bulksmsnigeria");
+
+        $this->app->when(BulkSMSNigeriaChannel::class)
+             ->needs('$config')
+             ->give($this->app["config"]->get("bulksmsnigeria"));
     }
 
     /**
