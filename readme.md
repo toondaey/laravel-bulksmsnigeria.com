@@ -12,11 +12,9 @@ or add  to your `composer.json` file:
 
 ```json
 {
-    "..."
     "require": {
         "toonday/laravel-bulksmsnigeria-notification": "~1.0"
     }
-    "..."
 }
 ```
 
