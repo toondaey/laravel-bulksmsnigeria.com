@@ -1,5 +1,7 @@
 ## Laravel Bulk SMS Nigeria(.com)
 
+[![Build Status](https://travis-ci.org/toondaey/laravel-bulksmsnigeria.com.svg?branch=master)](https://travis-ci.org/toondaey/laravel-bulksmsnigeria.com)
+
 This is a laravel package for sending sms (or bulk sms) to local (Nigerian) phone numbers.
 
 Installation is pretty straight forward: use either
