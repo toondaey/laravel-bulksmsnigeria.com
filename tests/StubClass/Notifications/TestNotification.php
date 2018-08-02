@@ -15,7 +15,7 @@ class TestNotification extends Notification
      *
      * @return void
      */
-    public function __construct(string $pin)
+    public function __construct($pin)
     {
         $this->pin = $pin;
     }
