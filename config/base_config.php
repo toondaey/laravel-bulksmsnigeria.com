@@ -13,29 +13,29 @@ return [
     /**
      * Base URI for the bulk sms nigeria api.
      */
-    "base_uri" => "https://www.bulksmsnigeria.com",
+    'base_uri' => 'https://www.bulksmsnigeria.com',
 
     /**
      * Header for api transaction
      */
-    "headers" => [
-        "Content-Type" => "application/json",
-        "Accept"       => "application/json",
+    'headers' => [
+        'Content-Type' => 'application/json',
+        'Accept'       => 'application/json',
     ],
 
     /**
      * Available API endpoints.
      */
-    "endpoints" => [
-        "send" => [
-            "sms" => "/api/v1/sms/create"
+    'endpoints' => [
+        'send' => [
+            'sms' => '/api/v1/sms/create'
         ],
     ],
 
     /**
      * The types of API transactions that can be handled.
      */
-    "types" => [
-        "sms" => "SMS"
+    'types' => [
+        'sms' => 'SMS'
     ],
 ];

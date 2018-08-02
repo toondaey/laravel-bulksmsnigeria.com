@@ -84,7 +84,7 @@ class BulkSMSNigeriaChannel
         $message = $this->parseMessage( $notification->toBulkSMSNigeria($notifiable) );
 
         if (array_key_exists($message->type, $this->config["types"])){
-            $this->{"send".strtoupper($message->type)}($to, $message);
+            $this->{'send'.strtoupper($message->type)}($to, $message);
         } else {
             throw new BulkSMSNigeriaException("Message type does not exist");
         }
@@ -101,9 +101,17 @@ class BulkSMSNigeriaChannel
     {
         $from = $this->from($message);
 
-        $query = "?api_token={$this->config["api_token"]}&from={$from}&to={$to}&body={$message->body}";
-
-        return $response = $this->client->get($this->config["endpoints"]["send"][$message->type].$query);
+        return $this->client->get(
+            "{$this->config['endpoints']['send'][$message->type]}?",
+            [
+                'query' => [
+                    'api_token' => $this->config['api_token'],
+                    'from'      => $from,
+                    'to'        => $to,
+                    'body'      => $message->body,
+                ]
+            ]
+        );
     }
 
     /**
@@ -116,7 +124,7 @@ class BulkSMSNigeriaChannel
     protected function getTo($notifiable, Notification $notification = null)
     {
         if (! $to = $notifiable->routeNotificationFor('bulkSMSNigeria', $notification)) {
-            throw new BulkSMSNigeriaException("Notifiable instance does not have a valid phone number(s)");
+            throw new BulkSMSNigeriaException('Notifiable instance does not have a valid phone number(s)');
         }
 
         return $to;
@@ -136,7 +144,7 @@ class BulkSMSNigeriaChannel
             return $message;
         }
 
-        throw new BulkSMSNigeriaException("Invalid message format.");
+        throw new BulkSMSNigeriaException('Invalid message format.');
     }
 
     /**
@@ -147,6 +155,6 @@ class BulkSMSNigeriaChannel
      */
     protected function from($message)
     {
-        return $message->from ? $message->from : $this->config["from"];
+        return $message->from ? $message->from : $this->config['from'];
     }
 }

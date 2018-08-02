@@ -27,19 +27,19 @@ class BulkSMSNigeriaServiceProvider extends ServiceProvider
      * Path to library config directory.
      * @var string
      */
-    protected $libConfigPath = __DIR__."/../config";
+    protected $libConfigPath = __DIR__.'/../config';
 
     public function boot()
     {
         $this->publishes([
-            "{$this->libConfigPath}/bulksmsnigeria.php" => config_path("bulksmsnigeria.php"),
-        ], "config");
+            "{$this->libConfigPath}/bulksmsnigeria.php" => config_path('bulksmsnigeria.php'),
+        ], 'config');
 
-        $this->mergeConfigFrom("{$this->libConfigPath}/base_config.php", "bulksmsnigeria");
+        $this->mergeConfigFrom("{$this->libConfigPath}/base_config.php", 'bulksmsnigeria');
 
         $this->app->when(BulkSMSNigeriaChannel::class)
              ->needs('$config')
-             ->give($this->app["config"]->get("bulksmsnigeria"));
+             ->give($this->app["config"]->get('bulksmsnigeria'));
     }
 
     /**
