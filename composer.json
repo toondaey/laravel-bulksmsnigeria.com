@@ -16,7 +16,7 @@
     "require-dev": {
         "sebastian/phpcpd": "^4.0",
         "phpunit/phpunit": "4.*",
-        "orchestra/testbench:~3.0"
+        "orchestra/testbench": "~3.0"
     },
     "license": "MIT",
     "authors": [
