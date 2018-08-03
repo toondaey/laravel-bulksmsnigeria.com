@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/toondaey/laravel-bulksmsnigeria.com.svg?branch=master)](https://travis-ci.org/toondaey/laravel-bulksmsnigeria.com)
 
-This is a laravel package for sending sms (or bulk sms) to local (Nigerian) phone numbers.
+This is a laravel package for sending sms (or bulk sms) to local (Nigerian) phone numbers for **Laravel >=5.3.\***.
 
 Installation is pretty straight forward: use either
 
@@ -73,7 +73,7 @@ public function toBulkSmsNigeria($notifiable)
 }
 ```
 
-The `BulkSMSMessage` class provides the following methods for you:
+The BulkSMSMessage class provides the following methods for you:
 ----------------------------------------------------------
 | Methods    | Usage                                     |
 | ---------- | ----------------------------------------- |
