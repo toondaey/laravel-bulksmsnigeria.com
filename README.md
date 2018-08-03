@@ -77,7 +77,7 @@ The BulkSMSMessage class provides the following methods for you:
 ----------------------------------------------------------
 | Methods    | Usage                                     |
 | ---------- | ----------------------------------------- |
-| `body`     | Used to construct the body of the message |
+| `body`     | Content of the message                    |
 | `from`     | If not specified in the `.env` file, this method will set the `from` parameter. In the case where it has already been set, it'll take precedence and reset the parameter. |
 
 With all that in place you can proceed to sending your text messages.
