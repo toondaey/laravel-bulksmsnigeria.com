@@ -10,7 +10,8 @@
         { "packagist": false }
     ],
     "require": {
-        "illuminate/notifications": "5.3.*",
+        "php": "^5.4.0|^7.0",
+        "illuminate/notifications": "5.*",
         "guzzlehttp/guzzle": "5.*|6.*"
     },
     "require-dev": {
