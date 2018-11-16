@@ -13,11 +13,11 @@ class BulkSMSNigeriaMessageTest extends TestCase
      */
     function it_initializes($method, $value)
     {
-        if ( $method !== "init" ) {
+        if ( $method !== 'init' ) {
             $bulksmsnigeriaMessage = (new BulkSMSMessage)->{$method}($value);
 
             $this->assertEquals($value, $bulksmsnigeriaMessage->{$method});
-        } else if ($method === "init") {
+        } else if ($method === 'init') {
             $bulksmsnigeriaMessage = new BulkSMSMessage($value);
 
             $this->assertEquals($value, $bulksmsnigeriaMessage->body);
@@ -32,10 +32,10 @@ class BulkSMSNigeriaMessageTest extends TestCase
     function provideBulkSMSMessageData()
     {
         return [
-            ["init", "Test message."],
-            ["body", "Another test message."],
-            ["from", "Testing"],
-            ["type", "call"]
+            ['init', 'Test message.'],
+            ['body', 'Another test message.'],
+            ['from', 'Testing'],
+            ['type', 'call']
         ];
     }
 }

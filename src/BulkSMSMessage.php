@@ -42,7 +42,7 @@ class BulkSMSMessage
      * Type of notificaiton.
      * @var string
      */
-    public $type = "sms";
+    public $type = 'sms';
 
     public function __construct($body = "")
     {

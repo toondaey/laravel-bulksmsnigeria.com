@@ -33,12 +33,12 @@ class TestCase extends BaseTestCase
     protected function getEnvironmentSetUp($app)
     {
         $config = array_merge(
-            require __DIR__."/../config/bulksmsnigeria.php",
-            require __DIR__."/../config/base_config.php"
+            require __DIR__.'/../config/bulksmsnigeria.php',
+            require __DIR__.'/../config/base_config.php'
         );
 
-        $app["config"]->set("bulksmsnigeria", $config);
-        $app["config"]->set("app.faker_locale", env("FAKER_LOCALE"));
-        $app["config"]->set("database.factory_dir", __DIR__."/../".env("FACTORY_PATH"));
+        $app['config']->set('bulksmsnigeria', $config);
+        $app["config"]->set('app.faker_locale', env('FAKER_LOCALE'));
+        $app['config']->set('database.factory_dir', __DIR__."/../".env('FACTORY_PATH'));
     }
 }

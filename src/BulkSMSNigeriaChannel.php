@@ -65,8 +65,8 @@ class BulkSMSNigeriaChannel
     protected function prepareClient()
     {
         $this->client = new Client([
-            "base_uri" => $this->config["base_uri"],
-            "headers"  => $this->config["headers"],
+            'base_uri' => $this->config['base_uri'],
+            'headers'  => $this->config['headers'],
         ]);
     }
 
@@ -83,10 +83,10 @@ class BulkSMSNigeriaChannel
 
         $message = $this->parseMessage( $notification->toBulkSMSNigeria($notifiable) );
 
-        if (array_key_exists($message->type, $this->config["types"])){
+        if (array_key_exists($message->type, $this->config['types'])){
             $this->{'send'.strtoupper($message->type)}($to, $message);
         } else {
-            throw new BulkSMSNigeriaException("Message type does not exist");
+            throw new BulkSMSNigeriaException('Message type does not exist');
         }
     }
 
@@ -123,8 +123,18 @@ class BulkSMSNigeriaChannel
      */
     protected function getTo($notifiable, Notification $notification = null)
     {
-        if (! $to = $notifiable->routeNotificationFor('bulkSMSNigeria', $notification)) {
-            throw new BulkSMSNigeriaException('Notifiable instance does not have a valid phone number(s)');
+        try {
+            if (! $to = $notifiable->routeNotificationFor('bulkSMSNigeria', $notification)) {
+                throw new BulkSMSNigeriaException(
+                    'Notifiable instance does not have (a) valid phone number(s) or is not a valid phone number.'
+                );
+            }
+        } catch (BulkSMSNigeriaException $e) {
+            if (
+                ! $to = $notifiable->routeNotificationFor(BulkSMSNigeriaChannel::class, $notification)
+            ) {
+                throw $e;
+            }
         }
 
         return $to;

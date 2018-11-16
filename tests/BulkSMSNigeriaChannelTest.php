@@ -7,9 +7,10 @@ use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
 use Tests\StubClass\Models\User;
 use GuzzleHttp\Handler\MockHandler;
-use Illuminate\Notifications\Notification;
 use Toonday\BulkSMSNigeria\BulkSMSMessage;
+use Illuminate\Support\Facades\Notification;
 use Toonday\BulkSMSNigeria\BulkSMSNigeriaChannel;
+use Illuminate\Notifications\AnonymousNotifiable;
 use Tests\StubClass\Notifications\TestNotification;
 use Illuminate\Support\Facades\Notification as FacadeNotification;
 
@@ -26,7 +27,7 @@ class BulkSMSNigeriaChannelTest extends TestCase
         $reflector = new Concerns\Reflector($channel);
 
         $this->assertInstanceOf(BulkSMSNigeriaChannel::class, $channel);
-        $this->assertInstanceOf(Client::class, $reflector->fetchProperty("client")->value);
+        $this->assertInstanceOf(Client::class, $reflector->fetchProperty('client')->value);
 
         return $reflector;
     }
@@ -39,9 +40,9 @@ class BulkSMSNigeriaChannelTest extends TestCase
      */
     function it_sets_from(Concerns\Reflector $reflector)
     {
-        $from = $reflector->invokeMethod("from", [new BulkSMSMessage("Test message")]);
+        $from = $reflector->invokeMethod('from', [new BulkSMSMessage('Test message')]);
 
-        $this->assertEquals(app("config")->get("bulksmsnigeria.from"), $from);
+        $this->assertEquals(app('config')->get('bulksmsnigeria.from'), $from);
     }
 
     /**
@@ -53,9 +54,9 @@ class BulkSMSNigeriaChannelTest extends TestCase
      */
     function it_parses_messaages(Concerns\Reflector $reflector)
     {
-        $message1 = $reflector->invokeMethod("parseMessage", ["String message"]);
-        $message2 = $reflector->invokeMethod("parseMessage",[new BulkSMSMessage("Another string message")]);
-        $reflector->invokeMethod("parseMessage", [1]);
+        $message1 = $reflector->invokeMethod('parseMessage', ['String message']);
+        $message2 = $reflector->invokeMethod('parseMessage',[new BulkSMSMessage('Another string message')]);
+        $reflector->invokeMethod('parseMessage', [1]);
 
         array_walk([$message1, $message2], function ($message){
             $this->assertInstanceOf(BulkSMSMessage::class, $message);
@@ -73,17 +74,12 @@ class BulkSMSNigeriaChannelTest extends TestCase
     {
         $user = new User;
         $phone_no = $user->phone_no;
-        $to = $reflector->invokeMethod("getTo", [$user]);
+        $to1 = $reflector->invokeMethod('getTo', [$user]);
         $user->phone_no = null;
-        $to = $reflector->invokeMethod("getTo", [$user]);
+        $to2 = $reflector->invokeMethod('getTo', [$user]);
+        dd($to2);
 
-        $this->assertEquals($to, $phone_no);
-        // Notification::fake();
-
-        // $user = new User;
-        // Notification::send($user, new TestNotification("1234"));
-
-        // Notification::assertSentTo([$user], TestNotification::class);
+        $this->assertEquals($to1, $phone_no);
     }
 
     /**
@@ -94,11 +90,11 @@ class BulkSMSNigeriaChannelTest extends TestCase
      */
     function it_sends_sms(Concerns\Reflector $reflector)
     {
-        $reflector->setProperty("client", $this->mockedClient());
+        $reflector->setProperty('client', $this->mockedClient());
 
         $response = $reflector->invokeMethod(
-            "sendSMS",
-            ["2348068940543", (new BulkSMSMessage("testing"))]
+            'sendSMS',
+            ['2348012345678', (new BulkSMSMessage('testing'))]
         );
 
         $this->assertInstanceOf(Response::class, $response);
@@ -112,11 +108,26 @@ class BulkSMSNigeriaChannelTest extends TestCase
      */
     function it_sends_with_send_method(Concerns\Reflector $reflector)
     {
-        $reflector->setProperty("client", $this->mockedClient());
+        $reflector->setProperty('client', $this->mockedClient());
 
-        $reflector->invokeMethod("send", [new User, new TestNotification("1234")]);
+        $reflector->invokeMethod('send', [new User, new TestNotification('1234')]);
 
         $this->assertTrue(true);
+    }
+
+    /**
+     * @test
+     * @param  Concerns\Reflector $reflector
+     * @return void
+     */
+    public function send_notification_to_notifiable_model()
+    {
+        Notification::fake();
+
+        $user = new User;
+        Notification::send($user, new TestNotification('1234'));
+
+        Notification::assertSentTo([$user], TestNotification::class);
     }
 
     /**
@@ -127,10 +138,10 @@ class BulkSMSNigeriaChannelTest extends TestCase
     {
         $response = new Response(
             200,
-            ["X-Foo" => "bar"],
+            ['X-Foo' => 'bar'],
             json_encode([
-                "data" => ["status" => "success","message" => "Message Sent"],
-                ["0" => 200],
+                'data' => ['status' => 'success','message' => 'Message Sent'],
+                ['0' => 200],
             ])
         );
 
@@ -138,6 +149,6 @@ class BulkSMSNigeriaChannelTest extends TestCase
 
         $handler = HandlerStack::create($mock);
 
-        return new Client(["handler" => $handler]);
+        return new Client(['handler' => $handler]);
     }
 }

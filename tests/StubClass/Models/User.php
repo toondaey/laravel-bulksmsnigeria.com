@@ -9,7 +9,7 @@ class User extends Model
 {
     use Notifiable;
 
-    public $phone_no = "2348061234567";
+    public $phone_no = '2348061234567';
 
     public function routeNotificationForBulkSMSNigeria($notification = null)
     {

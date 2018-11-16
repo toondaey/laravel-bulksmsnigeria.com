@@ -40,8 +40,8 @@ class Reflector extends \ReflectionClass
         $property = $this->getProperty($propertyName);
 
         return (object) [
-            "name" => $property->getName(),
-            "value" => $property->getValue($this->object)
+            'name' => $property->getName(),
+            'value' => $property->getValue($this->object)
         ];
     }
 
