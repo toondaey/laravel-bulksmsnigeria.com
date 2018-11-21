@@ -37,7 +37,7 @@
     },
     "scripts": {
         "tests": [
-            "vendor/bin/phpunit"
+            "vendor/bin/phpunit -c phpunit.xml.dist"
         ]
     },
     "minimum-stability": "dev",
