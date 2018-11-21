@@ -35,7 +35,8 @@ class BulkSMSNigeriaMessageTest extends TestCase
             ['init', 'Test message.'],
             ['body', 'Another test message.'],
             ['from', 'Testing'],
-            ['type', 'call']
+            ['type', 'call'],
+            ['dnd', 1]
         ];
     }
 }

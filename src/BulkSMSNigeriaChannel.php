@@ -109,6 +109,7 @@ class BulkSMSNigeriaChannel
                     'from'      => $from,
                     'to'        => $to,
                     'body'      => $message->body,
+                    'dnd'       => $message->dnd,
                 ]
             ]
         );

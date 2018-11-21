@@ -44,7 +44,13 @@ class BulkSMSMessage
      */
     public $type = 'sms';
 
-    public function __construct($body = "")
+    /**
+     * DND option. Defaults to 2.
+     * @var integer
+     */
+    public $dnd = 2;
+
+    public function __construct($body = '')
     {
         $this->body = $body;
     }
@@ -87,4 +93,18 @@ class BulkSMSMessage
 
         return $this;
     }
+
+    /**
+     * Set the dnd option.
+     *
+     * @param  int $option
+     * @return Toonday\BulkSMSNigeria\BulkSMSMessage
+     */
+    public function dnd($option)
+    {
+        $this->dnd = $option;
+
+        return $this;
+    }
+
 }
